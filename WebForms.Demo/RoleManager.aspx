@@ -20,7 +20,11 @@
     <div data-bind="visible: roles().length > 0">
         <h4>Existing roles:</h4>
         <ul data-bind="foreach: roles">
-            <li><span data-bind="text: $data"></span>&nbsp;<button type="button" class="btn btn-default" data-bind="click: $root.addMe">Add me to this group</button></li>
+            <li>
+                <span data-bind="text: $data"></span><br />
+                <button type="button" class="btn btn-default" data-bind="click: $root.addMe">Add me to this group</button>
+                <button type="button" class="btn btn-default" data-bind="click: $root.removeMe">Remove me from this group</button>
+            </li>
         </ul>
     </div>
     <script src="/Scripts/knockout-3.2.0.js"></script>
@@ -58,6 +62,10 @@
 
                 self.addMe = function (role) {
                     $.ajax('RoleManager.aspx/AddMeToRole', $.extend(defaultAjaxSettings, { data: JSON.stringify({ name: role }) }));
+                };
+                
+                self.removeMe = function (role) {
+                    $.ajax('RoleManager.aspx/RemoveMeFromRole', $.extend(defaultAjaxSettings, { data: JSON.stringify({ name: role }) }));
                 };
             };
 

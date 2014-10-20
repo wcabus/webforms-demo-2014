@@ -36,5 +36,12 @@ namespace WebForms.Demo
             var um = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             um.AddToRole(HttpContext.Current.User.Identity.GetUserId(), name);
         }
+
+        [WebMethod]
+        public static void RemoveMeFromRole(string name)
+        {
+            var um = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            um.RemoveFromRole(HttpContext.Current.User.Identity.GetUserId(), name);
+        }
     }
 }
